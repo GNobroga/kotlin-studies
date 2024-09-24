@@ -1,5 +1,5 @@
-import loopStructures.Example1
+import functions.Example
 
 fun main() {
-    Example1.execute();
+    Example.execute();
 }
