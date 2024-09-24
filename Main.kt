@@ -1,4 +1,4 @@
-import conditionalStructures.Example1
+import loopStructures.Example1
 
 fun main() {
     Example1.execute();
