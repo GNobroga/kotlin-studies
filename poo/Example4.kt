@@ -1,6 +1,17 @@
 package poo
 
-import kotlin.math.pow
+import kotlin.math.pow;
+
+// Permite declarar alias para um tipo
+typealias MatSumOperation = (Int, Int) -> Int;
+typealias PersonName = String;
+
+// Cria uma classe utilitária (Singleton).
+object CustomMath {
+    fun sum(): Int {
+        return 10;
+    }
+}
 
 class Example4 {
 
@@ -24,6 +35,13 @@ class Example4 {
         // Bloco de inicialização, é chamado a cada vez que uma instância é criada.
         init {
             println("Hello Brazil");
+            CustomMath.sum();
+
+            var lambda: MatSumOperation = { x: Int, y: Int -> x + y };
+            lambda(10, 20);
+
+            var personName: PersonName = "Gabriel";
+            personName.uppercase();
         }
     }
 }
