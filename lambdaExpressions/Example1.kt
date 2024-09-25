@@ -43,6 +43,12 @@ class Example1 {
 
             // Quando a expressão lambda possui apenas 1 parametro o kotlin permite usar essa sintaxe abaixo
             val lambda: (Int) -> Int = { it * 20 };
+
+
+            val mapToEntity: (Any) -> String = fun (obj: Any): String {
+                return obj.toString();
+            }
+
         }
         private fun sum(a: Int, b: Int): Int {
             return a + b;
