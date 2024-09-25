@@ -23,7 +23,7 @@ class Example {
 
     // Funções que retorna Nothing são funções que lançam execeção.
     fun doNothing(): Nothing {
-        TODO(); // Lança um execeção quando o código não está implementado.
+        TODO("Not yet implemented"); // Lança um execeção quando o código não está implementado.
     }
 
     // Shorthand para funções que só tem retorno simples

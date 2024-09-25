@@ -20,16 +20,11 @@ class Example1 {
 
             var password = null as String?;
 
-            if (password == null) {
-                password = "1234";
-            }
+            password = password ?: "1234";
 
-            var encodedPassword = "";
-            for (i in password.indices) {
-                encodedPassword += "*";
-            }
+            password = "*".repeat(password.length);
 
-            print(encodedPassword);
+            println(password);
         }
     }
 }

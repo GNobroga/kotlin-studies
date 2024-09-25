@@ -18,7 +18,6 @@ sealed class Example2 {
         fun execute() {
             val example = EmailService();
             example.send("Gabriel", "Carlinhos");
-
         }
     }
 }

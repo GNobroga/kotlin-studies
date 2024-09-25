@@ -10,6 +10,7 @@ class Example1 {
         //        var owner: String = owner; // Property
         //        var balance: Double = initialBalance; // Property
 
+
         // Getter e Setters - Por padrão o kotlin cria automaticamente, mas se for necessário pode ser feito o código abaixo.
         var balance: Double = 0.0
             get() {
@@ -35,6 +36,7 @@ class Example1 {
             account.deposit(200 as Double);
 
             println(account.balance);
+
         }
     }
 }
