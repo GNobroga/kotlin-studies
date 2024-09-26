@@ -8,17 +8,19 @@ import java.util.*
 
 class Bank(val id: Long, val name: String) {
 
-    private val accounts: MutableList<Account> = mutableListOf();
+    private val _accounts: MutableList<Account> = mutableListOf()
+
+    val accounts get() = _accounts.toList()
 
     fun addAccount(account: Account) {
-        if (accounts.find { it.id == account.id && it.bank.id == id } != null) {
+        if (_accounts.find { it.id == account.id && it.bank.id == id } != null) {
             throw IllegalArgumentException("A conta já está cadastrada.")
         }
-        accounts.add(account)
+        _accounts.add(account)
     }
 
     private fun getAccountById(accountId: Long): Account {
-        val account = accounts.firstOrNull { it.id == accountId }
+        val account = _accounts.firstOrNull { it.id == accountId }
         if (Objects.isNull(account)) {
             throw IllegalArgumentException("Conta com $accountId não encontrada!")
         }
@@ -57,6 +59,8 @@ class Bank(val id: Long, val name: String) {
         if (fromAccount.balance > BigDecimal.ZERO && fromAccount.balance >= value) {
             fromAccount.balance -= value;
             toAccount.balance += value;
+        } else {
+            throw IllegalArgumentException("Saldo insuficiente!")
         }
     }
 
