@@ -23,7 +23,28 @@ import kotlin.reflect.KProperty
 
 // o by permite delegar comportamento para outro objeto
 
-fun <T> getPropertyFromMap(map: MutableMap<String, Any>): ReadWriteProperty<Any?, T> {
+
+
+
+
+
+class MonitorProperty<T>(val callback: (T?, T?) -> Unit): ReadWriteProperty<Any, T?> {
+
+    private var value: T? = null
+
+    override fun getValue(thisRef: Any, property: KProperty<*>): T? {
+       return this.value
+    }
+
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) {
+        callback(this.value, value)
+        this.value = value
+    }
+
+}
+
+
+fun <T> getPropertyFromMap(map: Map<String, Any>): ReadWriteProperty<Any?, T> {
     return object : ReadWriteProperty<Any?, T> {
 
         private var value: T? = null
@@ -43,14 +64,19 @@ fun <T> getPropertyFromMap(map: MutableMap<String, Any>): ReadWriteProperty<Any?
     }
 }
 
-class SomeClass(map: MutableMap<String, Any>) {
+class SomeClass(map: Map<String, Any>) {
     var name: String by getPropertyFromMap(map);
+    var age: Int? by MonitorProperty {
+        oldValue, newValue ->
+        run {
+            println("OldValue $oldValue newValue $newValue")
+        }
+    }
 }
 
 fun main(vararg args: String) {
-
-    val someClass = SomeClass(mapOf("name" to "Gabriel", "age" to 10).toMutableMap())
-
+    val someClass = SomeClass(mapOf("name" to "Gabriel Cardoso Girarde"))
     println(someClass.name)
-
+    someClass.age = 100
+    someClass.age = 200
 }
