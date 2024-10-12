@@ -1,5 +1,7 @@
 package structural
 
+// O adapter, faz a adaptação de uma interface para outra
+
 interface JSONConverter {
     fun toJson(): String
 }
